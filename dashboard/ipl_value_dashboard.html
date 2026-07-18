@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPL 2026: Are Players Worth What They're Paid?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#F3F5F9; --card:#FFFFFF; --border:#E1E5EC;
+    --ink:#1B2333; --muted:#5B6478;
+    --teal:#146C64; --teal-soft:#DCEEEC;
+    --amber:#C6742A; --amber-soft:#F6E7D8;
+    --coral:#B4503F; --coral-soft:#F3E0DC;
+    --slate:#3D4B63;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',system-ui,sans-serif; line-height:1.5; padding:40px 24px 80px;}
+  .wrap{max-width:1080px; margin:0 auto;}
+  .eyebrow{font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:10px;}
+  h1{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(26px,4vw,40px); margin:0 0 10px; letter-spacing:-0.01em;}
+  .subtitle{color:var(--muted); font-size:15px; max-width:680px; margin:0 0 36px;}
+
+  .hero{
+    background:linear-gradient(135deg,var(--ink) 0%, #2A3A52 100%);
+    border-radius:16px; padding:32px 36px; color:#fff; margin-bottom:28px;
+    display:flex; flex-wrap:wrap; gap:32px; align-items:center; justify-content:space-between;
+  }
+  .hero-text{max-width:440px;}
+  .hero-label{font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#9FB0C8; margin-bottom:8px;}
+  .hero-title{font-family:'Fraunces',serif; font-size:20px; font-weight:600; line-height:1.35;}
+  .hero-stats{display:flex; gap:28px;}
+  .hero-stat{text-align:center;}
+  .hero-stat .num{font-family:'Fraunces',serif; font-size:34px; font-weight:700; line-height:1;}
+  .hero-stat.good .num{color:#5FBFAE;}
+  .hero-stat.bad .num{color:#E08A78;}
+  .hero-stat .lbl{font-size:11.5px; color:#B7C3D6; margin-top:6px; max-width:120px;}
+
+  .kpi-row{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:28px;}
+  .kpi{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 22px;}
+  .kpi .val{font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:var(--ink);}
+  .kpi .lbl{font-size:12.5px; color:var(--muted); margin-top:4px;}
+
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px;}
+  .card h2{font-size:15px; font-weight:600; margin:0 0 4px;}
+  .card .note{font-size:12.5px; color:var(--muted); margin-bottom:16px;}
+  .chart-box{position:relative; height:320px;}
+  .full{grid-column:1 / -1;}
+
+  .findings{list-style:none; padding:0; margin:0;}
+  .findings li{display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--border); font-size:13.5px;}
+  .findings li:last-child{border-bottom:none;}
+  .findings .tag{
+    flex-shrink:0; font-size:10.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--teal); background:var(--teal-soft); padding:3px 8px; border-radius:6px; height:fit-content;
+  }
+
+  .caveat{
+    background:var(--amber-soft); border:1px solid #E8C89A; border-radius:10px; padding:16px 18px;
+    font-size:13px; color:#7A4E1E; margin-bottom:28px;
+  }
+  .caveat b{display:block; margin-bottom:4px; font-size:12px; text-transform:uppercase; letter-spacing:0.04em;}
+
+  footer{margin-top:28px; padding-top:20px; border-top:1px solid var(--border); font-size:12.5px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr;}
+    .kpi-row{grid-template-columns:repeat(2,1fr);}
+    .hero{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Project 8 of 10 &middot; Portfolio</div>
+  <h1>IPL 2026: Are Players Worth What They're Paid?</h1>
+  <p class="subtitle">Career IPL performance (runs + wickets, weighted) compared against real 2026 auction/retention prices for 19 players, to see who delivers the most impact per crore spent — and who doesn't.</p>
+
+  <div class="caveat">
+    <b>Methodology & data notes</b>
+    "Impact score" = career IPL runs + (wickets &times; 20), a standard rough T20 batting/bowling equivalence. This favors bowlers and all-rounders somewhat, since a single wicket is weighted heavily — worth keeping in mind when comparing pure batters to bowlers. Auction prices are from public 2026 auction/retention reporting; players with conflicting figures across sources were excluded rather than guessed at, narrowing the dataset from 37 to 19 players with high-confidence pricing.
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-label">Headline finding</div>
+      <div class="hero-title">MS Dhoni, retained for just ₹4 crore, delivers 3.3&times; better value than the next-best player — and Rishabh Pant, the most expensive player in IPL history, ranks 16th of 19.</div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat good">
+        <div class="num">1,360</div>
+        <div class="lbl">Dhoni: value points per crore</div>
+      </div>
+      <div class="hero-stat bad">
+        <div class="num">132</div>
+        <div class="lbl">Pant: value points per crore</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="val">19</div><div class="lbl">Players analyzed</div></div>
+    <div class="kpi"><div class="val">₹4Cr</div><div class="lbl">Cheapest: MS Dhoni</div></div>
+    <div class="kpi"><div class="val">₹27Cr</div><div class="lbl">Priciest: Rishabh Pant</div></div>
+    <div class="kpi"><div class="val">10.4&times;</div><div class="lbl">Price gap, cheapest to priciest</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Best value picks</h2>
+      <div class="note">Impact points delivered per crore spent, top 5 of 19</div>
+      <div class="chart-box"><canvas id="topChart"></canvas></div>
+    </div>
+    <div class="card">
+      <h2>Worst value picks</h2>
+      <div class="note">Bottom 5 of 19 — includes the most expensive player in IPL history</div>
+      <div class="chart-box"><canvas id="bottomChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card full">
+      <h2>Price vs. value across all 19 players</h2>
+      <div class="note">Each dot is a player — top-left is the sweet spot (low price, high value); bottom-right is the danger zone (high price, low value)</div>
+      <div class="chart-box"><canvas id="scatterChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card full">
+      <h2>Key findings</h2>
+      <ul class="findings">
+        <li><span class="tag">Best value</span> MS Dhoni (₹4Cr) delivers 1,360 value points per crore — nearly 3.3x the #2 player, Trent Boult (₹3.2Cr, 920/crore).</li>
+        <li><span class="tag">Worst value</span> Nicholas Pooran (₹21Cr) ranks last at 109/crore, followed closely by Arshdeep Singh and Yashasvi Jaiswal — none are "bad" players, but their price doesn't match their output-per-rupee.</li>
+        <li><span class="tag">Marquee overpay</span> Rishabh Pant, the most expensive player in IPL auction history (₹27Cr), ranks 16th of 19 on value — a real gap between market hype and statistical output.</li>
+        <li><span class="tag">Bowlers cluster high</span> 4 of the top 5 value picks (Boult, Chahal, Jadeja, Narine) are bowlers or all-rounders — wicket-taking is comparatively cheap to acquire relative to marquee batting talent.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Data: CricAPI (career stats), public 2026 auction/retention reporting (prices)</span>
+    <span>Tools: Python &middot; Pandas &middot; Chart.js</span>
+  </footer>
+
+</div>
+
+<script>
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.color = '#5B6478';
+
+new Chart(document.getElementById('topChart'), {
+  type: 'bar',
+  data: {
+    labels: ['MS Dhoni','Trent Boult','Yuzvendra Chahal','Ravindra Jadeja','Sunil Narine'],
+    datasets: [{ data: [1359.8,920.3,742.8,475.7,468.3], backgroundColor: '#146C64', borderRadius: 4, barThickness: 16 }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: '#E1E5EC' }, ticks: { font: { size: 11 } } },
+      y: { grid: { display: false }, ticks: { font: { size: 11.5 } } }
+    }
+  }
+});
+
+new Chart(document.getElementById('bottomChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Nicholas Pooran','Arshdeep Singh','Yashasvi Jaiswal','Rishabh Pant','Ruturaj Gaikwad'],
+    datasets: [{ data: [109.2,109.5,120.3,131.6,139.0], backgroundColor: '#B4503F', borderRadius: 4, barThickness: 16 }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: '#E1E5EC' }, ticks: { font: { size: 11 } } },
+      y: { grid: { display: false }, ticks: { font: { size: 11.5 } } }
+    }
+  }
+});
+
+new Chart(document.getElementById('scatterChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Players',
+      data: [
+        {x:4.00,y:1359.8,label:'MS Dhoni'},{x:3.20,y:920.3,label:'Trent Boult'},{x:6.00,y:742.8,label:'Yuzvendra Chahal'},
+        {x:14.00,y:475.7,label:'Ravindra Jadeja'},{x:12.00,y:468.3,label:'Sunil Narine'},{x:21.00,y:416.2,label:'Virat Kohli'},
+        {x:10.00,y:274.4,label:'Mohammed Shami'},{x:16.50,y:271.3,label:'Axar Patel'},{x:16.00,y:269.4,label:'Suryakumar Yadav'},
+        {x:18.00,y:261.3,label:'Sanju Samson'},{x:18.00,y:207.1,label:'Jasprit Bumrah'},{x:8.00,y:187.4,label:'Tilak Varma'},
+        {x:13.25,y:169.1,label:'Kuldeep Yadav'},{x:26.75,y:139.5,label:'Shreyas Iyer'},{x:18.00,y:139.0,label:'Ruturaj Gaikwad'},
+        {x:27.00,y:131.6,label:'Rishabh Pant'},{x:18.00,y:120.3,label:'Yashasvi Jaiswal'},{x:18.00,y:109.5,label:'Arshdeep Singh'},
+        {x:21.00,y:109.2,label:'Nicholas Pooran'}
+      ],
+      backgroundColor: '#146C64',
+      pointRadius: 6,
+      pointHoverRadius: 8
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx) => `${ctx.raw.label}: ₹${ctx.raw.x}Cr, ${ctx.raw.y} value/crore` } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Price (₹ Crore)', font: { size: 12 } }, grid: { color: '#E1E5EC' } },
+      y: { title: { display: true, text: 'Value per crore', font: { size: 12 } }, grid: { color: '#E1E5EC' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
