@@ -1,0 +1,20 @@
+name,price_crore,acquisition_type,role,ipl_matches,ipl_runs,ipl_bat_avg,ipl_bat_sr,ipl_100s,ipl_50s,ipl_wkts,ipl_bowl_avg,ipl_economy,impact_score,value_per_crore
+MS Dhoni,4.0,Retained,WK-Batsman,278.0,5439.0,38.3,137.46,0.0,24.0,0.0,0.0,0.0,5439.0,1359.8
+Trent Boult,3.2,Auction,Bowler,119.0,85.0,9.44,104.94,0.0,0.0,143.0,26.2,8.38,2945.0,920.3
+Yuzvendra Chahal,6.0,Auction,Bowler,174.0,37.0,5.29,43.03,0.0,0.0,221.0,22.77,7.96,4457.0,742.8
+Ravindra Jadeja,14.0,Retained,Bowling Allrounder,254.0,3260.0,27.86,130.25,0.0,3.0,170.0,30.52,7.67,6660.0,475.7
+Sunil Narine,12.0,Retained,Bowling Allrounder,188.0,1780.0,17.62,166.52,1.0,7.0,192.0,25.64,6.8,5620.0,468.3
+Virat Kohli,21.0,Retained,Batsman,267.0,8661.0,39.55,132.86,8.0,55.0,4.0,92.0,8.8,8741.0,416.2
+Mohammed Shami,10.0,Auction,Bowler,119.0,84.0,6.0,94.39,0.0,0.0,133.0,28.18,8.63,2744.0,274.4
+Axar Patel,16.5,Retained,Bowling Allrounder,162.0,1916.0,22.02,133.99,0.0,3.0,128.0,31.61,7.35,4476.0,271.3
+Suryakumar Yadav,16.0,Retained,Batsman,166.0,4311.0,35.05,148.66,2.0,24.0,0.0,0.0,8.0,4311.0,269.4
+Sanju Samson,18.0,Retained,WK-Batsman,176.0,4704.0,30.75,139.05,3.0,25.0,0.0,0.0,0.0,4704.0,261.3
+Jasprit Bumrah,18.0,Retained,Bowler,145.0,68.0,9.71,86.08,0.0,0.0,183.0,22.03,7.25,3728.0,207.1
+Tilak Varma,8.0,Retained,Batsman,54.0,1499.0,37.48,144.42,0.0,6.0,0.0,0.0,7.64,1499.0,187.4
+Kuldeep Yadav,13.25,Retained,Bowler,98.0,201.0,13.4,86.64,0.0,0.0,102.0,26.95,8.04,2241.0,169.1
+Shreyas Iyer,26.75,Auction,Batsman,132.0,3731.0,34.23,133.35,0.0,21.0,0.0,0.0,7.0,3731.0,139.5
+Ruturaj Gaikwad,18.0,Retained,Batsman,71.0,2502.0,40.35,137.48,2.0,18.0,0.0,0.0,0.0,2502.0,139.0
+Rishabh Pant,27.0,Auction,WK-Batsman,125.0,3553.0,34.16,147.62,1.0,18.0,0.0,0.0,0.0,3553.0,131.6
+Yashasvi Jaiswal,18.0,Retained,Batsman,66.0,2166.0,34.38,152.86,2.0,9.0,0.0,0.0,0.0,2166.0,120.3
+Arshdeep Singh,18.0,Retained,Bowler,82.0,31.0,5.17,67.4,0.0,0.0,97.0,26.49,9.0,1971.0,109.5
+Nicholas Pooran,21.0,Retained,WK-Batsman,90.0,2293.0,34.22,168.98,0.0,9.0,0.0,0.0,0.0,2293.0,109.2
