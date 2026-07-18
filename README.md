@@ -23,4 +23,4 @@ The impact-score formula favors bowlers somewhat (a wicket is weighted heavily).
 Python, Pandas, CricAPI, Chart.js
 
 ## Dashboard
-[paste your GitHub Pages link here once live]
+https://munna54-8.github.io/ipl-auction-value/dashboard/ipl_value_dashboard.html
